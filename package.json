@@ -1,0 +1,43 @@
+{
+  "name": "nashwanchat-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Joel Sequeira <joelseq96@gmail.com> (https://twitter.com/joelseq03)",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-flow": "6.23.0",
+    "express": "4.16.3",
+    "socket.io": "2.1.1"
+  },
+  "devDependencies": {
+    "@zeit/eslint-config-node": "0.3.0",
+    "@zeit/git-hooks": "0.1.4",
+    "babel-eslint": "8.2.6",
+    "eslint": "5.1.0",
+    "eslint-config-prettier": "2.9.0",
+    "eslint-plugin-flow": "2.29.1",
+    "flow-bin": "0.76.0",
+    "nodemon": "1.18.3"
+  },
+  "eslintConfig": {
+    "extends": ["@zeit/eslint-config-node", "prettier"],
+    "parser": "babel-eslint",
+    "plugins": ["flow"],
+    "settings": {
+      "flowtype": {
+        "onlyFilesWithFlowAnnotation": true
+      }
+    }
+  },
+  "scripts": {
+    "lint": "zeit-eslint --ext .jsx,.js .",
+    "lint-staged": "git diff --diff-filter=ACMRT --cached --name-only '*.js' '*.jsx' | xargs zeit-eslint",
+    "start": "babel-node index.js",
+    "dev": "nodemon --exec babel-node index.js"
+  },
+  "git": {
+    "pre-commit": "lint-staged"
+  }
+}
